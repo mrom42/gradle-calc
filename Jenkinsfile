@@ -28,7 +28,7 @@ pipeline {
 			}
 		}		
 		stage("test brik") {
-			agent brik
+			agent { brik }
 			steps {
 				sh "docker image ls"
 			}
