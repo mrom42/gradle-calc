@@ -1,6 +1,9 @@
 package com.mro.calculator;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+/**
+* Main Service
+*/
 public class CalculatorTest {
 private Calculator calculator = new Calculator();
 @Test
