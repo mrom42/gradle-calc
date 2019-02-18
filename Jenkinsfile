@@ -34,6 +34,7 @@ pipeline {
 			}
 		}
 		stage("Docker build") {
+			agent { node { label 'brik' } }
 			steps {
 				sh "docker build -t mrom42/calculator ."
 				sh "docker image ls"
