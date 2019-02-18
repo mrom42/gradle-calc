@@ -30,6 +30,12 @@ pipeline {
 		stage("test brik") {
 			agent { node { label 'brik' } } 
 			steps {
+				sh "./gradlew build"
+			}
+		}
+		stage("Docker build") {
+			steps {
+				sh "docker build -t mrom42/calculator ."
 				sh "docker image ls"
 			}
 		}
