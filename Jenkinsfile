@@ -27,5 +27,11 @@ pipeline {
 				sh "./gradlew checkstyleMain"
 			}
 		}		
+		stage("test brik") {
+			agent brik
+			steps {
+				sh "docker image ls"
+			}
+		}
 	}
 }
