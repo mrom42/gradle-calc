@@ -1,4 +1,4 @@
-package com.mro.calculator;
+package com.mro.gradlecalc;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 /**

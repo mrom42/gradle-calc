@@ -1,4 +1,4 @@
-package com.mro.calculator;
+package com.mro.gradlecalc;
 import org.springframework.stereotype.Service;
 /**
 * Main Service
