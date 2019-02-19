@@ -27,18 +27,35 @@ pipeline {
 				sh "./gradlew checkstyleMain"
 			}
 		}		
-		stage("test brik") {
+		stage("build on brik") {
 			agent { node { label 'brik' } } 
 			steps {
 				sh "./gradlew build"
 			}
 		}
-		stage("Docker build") {
+  		stage('Building image') {
 			agent { node { label 'brik' } }
-			steps {
-				sh "docker build -t mrom42/calculator ."
-				sh "docker image ls"
-			}
-		}
+      			steps{
+        			script {
+          				dockerImage = docker.build registry + ":$BUILD_NUMBER"
+       			 	}
+      			}
+    		}
+    		stage('Deploy Image') {
+			agent { node { label 'brik' } }
+      			steps{
+         			script {
+            				docker.withRegistry( '', registryCredential ) {
+            					dockerImage.push()
+          				}
+        			}
+      			}
+    		}
+    		stage('Remove Unused docker image') {
+			agent { node { label 'brik' } }
+      			steps{
+        			sh "docker rmi $registry:$BUILD_NUMBER"
+      			}
+    		}  
 	}
 }
