@@ -1,4 +1,9 @@
 pipeline {
+  	environment {
+    		registry = "mrom42/calculator"
+    		registryCredential = 'dockerhub'
+    		dockerImage = ''
+  	}
 	agent any
 	stages {
 		stage("Compile") {
