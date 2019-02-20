@@ -65,13 +65,13 @@ pipeline {
                 stage('Deploy to stageing') {
                         agent { node { label 'brik' } }
                         steps{
-                                sh "docker run -d --rm -p 192.168.56.103:8080:8080 --name calculator $registry:$BUILD_NUMBER"
+                                sh "docker-compose up -d"
                         }
                 }
                 stage('stop stageing') {
                         agent { node { label 'brik' } }
                         steps{
-                                sh "docker stop calculator"
+                                sh "docker-compose down"
                         }
                 }
 	}
