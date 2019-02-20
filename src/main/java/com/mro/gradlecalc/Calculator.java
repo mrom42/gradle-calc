@@ -1,10 +1,14 @@
-package com.mro.calculator;
+package com.mro.gradlecalc;
+
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-/**
-* Main Service
-*/
+
+/** Calculator
+logic */
 @Service
 public class Calculator {
-int sum(int a, int b) {
-return a + b;
-}}
+@Cacheable("sum")
+public int sum(int a, int b) {
+	return a+ b;
+	}
+}
