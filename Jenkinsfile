@@ -59,7 +59,7 @@ pipeline {
     		stage('Remove Unused docker image') {
 			agent { node { label 'brik' } }
       			steps{
-        			sh "docker rmi $registry
+        			sh "docker rmi $registry"
       			}
     		}  
                 stage('Deploy to stageing') {
