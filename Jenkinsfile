@@ -42,7 +42,7 @@ pipeline {
 			agent { node { label 'brik' } }
       			steps{
         			script {
-          				dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          				dockerImage = docker.build registry 
        			 	}
       			}
     		}
@@ -59,7 +59,7 @@ pipeline {
     		stage('Remove Unused docker image') {
 			agent { node { label 'brik' } }
       			steps{
-        			sh "docker rmi $registry:$BUILD_NUMBER"
+        			sh "docker rmi $registry
       			}
     		}  
                 stage('Deploy to stageing') {
